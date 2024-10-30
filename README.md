@@ -2,7 +2,7 @@
 
 ## Usage
 
-This tool requires Obsidian (duh!), the Dataview plugin, and the local rest API plugin.
+This tool requires Obsidian (duh!), the Dataview plugin, and the local rest API plugin (obsidian://show-plugin?id=obsidian-local-rest-api).
 
 you must configure the following info from your local rest api settings in obsidian.
 1. $apikey 
@@ -13,5 +13,4 @@ Here is the dataview code
 ```
 ```dataview
 table hostname, open_ports from #asset 
-```
-```
+``````
