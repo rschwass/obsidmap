@@ -67,13 +67,13 @@ end
 arr=[]
 port_dict.each do |k,v|
   $ip = k.split(',')[0]
-  $address = k.split(',')[1]
+  $hostname = k.split(',')[1]
   v.each do |j|
     port = j[0]
     proto = j[1]
     state = j[2]
     service = j[3]
-    arr.push(%Q|- "#{port}:#{proto}:#{service}:"|)
+    arr.push(%Q|- "#{port}:#{proto}:#{service}"|)
   end
 
 end
