@@ -2,15 +2,15 @@ require 'nokogiri'
 require 'net/http'
 require 'uri'
 
-$apikey=""
-$port = ""
+$apikey=ENV['obsidian_apikey']
+$port="27124"
 #doc = File.open("test.xml") { |f| Nokogiri::XML(f) }
 
-#For windows nmap under wsl 
-#command = %Q|cmd.exe /c nmap -sV --open #{ARGV.join(' ')} -oX -|
+#For windows nmap under wsl
+command = %Q|cmd.exe /c nmap -sV -p 22 --open #{ARGV.join(' ')} -oX -|
 
 #For Linux
-command = %Q|nmap -sV -Pn -p- --open #{ARGV.join(' ')} -oX -|
+#command = %Q|nmap -sV -Pn -p- --open #{ARGV.join(' ')} -oX -|
 
 
 doc = Nokogiri::XML(`#{command}`)
@@ -108,7 +108,9 @@ doc.xpath("//nmaprun/host").each do |node|
       end
     end
 
-
+    if child.name == 'address'
+      puts child['addr']
+    end
 
     if child.name == 'ports'
       child.children.each do |x|
