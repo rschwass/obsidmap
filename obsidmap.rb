@@ -66,10 +66,9 @@ end
 
 arr=[]
 port_dict.each do |k,v|
-  $ip = k
+  $ip = k.split(',')[0]
+  $address = k.split(',')[1]
   v.each do |j|
-    puts j
-    puts j[4]
     port = j[0]
     proto = j[1]
     state = j[2]
@@ -142,7 +141,7 @@ doc.xpath("//nmaprun/host").each do |node|
         end
       end
       port_arr.push("#{name_arr.uniq[0]}")
-      port_dict[address] = port_arr
+      port_dict["#{name_arr.uniq[0]},#{address}"] = port_arr
       prepare_data(port_dict, servicefp)
     end
 
