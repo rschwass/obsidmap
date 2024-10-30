@@ -113,8 +113,8 @@ doc.xpath("//nmaprun/host").each do |node|
     end
 
     if child.name == 'address'
-      address=child['addr']
-      puts address
+      $address=child['addr']
+    
     end
 
     if child.name == 'ports'
@@ -142,7 +142,7 @@ doc.xpath("//nmaprun/host").each do |node|
         end
       end
       port_arr.push("#{name_arr.uniq[0]}")
-      port_dict["#{name_arr.uniq[0]}-#{address}"] = port_arr
+      port_dict["#{name_arr.uniq[0]}-#{$address}"] = port_arr
       prepare_data(port_dict, servicefp)
     end
 
