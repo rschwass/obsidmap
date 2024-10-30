@@ -141,7 +141,7 @@ doc.xpath("//nmaprun/host").each do |node|
           port_arr.push(c_arr)
         end
       end
-      port_arr.push("#{name_arr.uniq[0]}")
+      #port_arr.push("#{name_arr.uniq[0]}")
       port_dict["#{name_arr.uniq[0]}-#{$address}"] = port_arr
       prepare_data(port_dict, servicefp)
     end
