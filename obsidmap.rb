@@ -92,7 +92,7 @@ body= %Q|---
 #{notes}
 
 |
-
+puts $filename
 send_data($filename, body)
 end
 
