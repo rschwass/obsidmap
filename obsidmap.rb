@@ -68,6 +68,8 @@ arr=[]
 port_dict.each do |k,v|
   $ip = k
   v.each do |j|
+    puts j
+    puts j[4]
     port = j[0]
     proto = j[1]
     state = j[2]
