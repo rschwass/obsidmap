@@ -13,4 +13,14 @@ Here is the dataview code
 ```
 ```dataview
 table hostname, open_ports from #asset 
-``````
+```
+```
+
+
+Runs on ruby and you must install:
+
+Nokogiri 
+
+```
+sudo gem isntall nokogiri
+```
