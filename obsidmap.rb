@@ -17,7 +17,7 @@ doc = Nokogiri::XML(`#{command}`)
 
 def send_data(hostname, body)
 
-  uri = URI.parse("http://127.0.0.1:#{$port}/vault/scans/#{hostname}.md")
+  uri = URI.parse("https://127.0.0.1:#{$port}/vault/scans/#{hostname}.md")
   request = Net::HTTP::Put.new(uri)
   request.content_type = "text/markdown"
   request["Accept"] = "*/*"
@@ -27,6 +27,7 @@ def send_data(hostname, body)
 
   req_options = {
     use_ssl: uri.scheme == "https",
+    verify_mode: OpenSSL::SSL::VERIFY_NONE,
   }
 
   response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
