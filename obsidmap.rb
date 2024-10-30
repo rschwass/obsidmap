@@ -10,7 +10,7 @@ $port = ""
 #command = %Q|cmd.exe /c nmap -sV --open #{ARGV.join(' ')} -oX -|
 
 #For Linux
-command = %Q|nmap -sV --open #{ARGV.join(' ')} -oX -|
+command = %Q|nmap -sV -Pn -p- --open #{ARGV.join(' ')} -oX -|
 
 
 doc = Nokogiri::XML(`#{command}`)
