@@ -114,6 +114,7 @@ doc.xpath("//nmaprun/host").each do |node|
 
     if child.name == 'address'
       address=child['addr']
+      puts address
     end
 
     if child.name == 'ports'
