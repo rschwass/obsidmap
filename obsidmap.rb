@@ -7,7 +7,7 @@ $port="27124"
 #doc = File.open("test.xml") { |f| Nokogiri::XML(f) }
 
 #For windows nmap under wsl
-command = %Q|cmd.exe /c nmap -sV -p 22 --open #{ARGV.join(' ')} -oX -|
+command = %Q|cmd.exe /c nmap -sV --open #{ARGV.join(' ')} -oX -|
 
 #For Linux
 #command = %Q|nmap -sV -Pn -p- --open #{ARGV.join(' ')} -oX -|
@@ -66,8 +66,8 @@ end
 
 arr=[]
 port_dict.each do |k,v|
-  $ip = k.split(',')[1]
-  $hostname = k.split(',')[0]
+  $ip = k.split('-')[1]
+  $hostname = k.split('-')[0]
   v.each do |j|
     port = j[0]
     proto = j[1]
@@ -139,7 +139,7 @@ doc.xpath("//nmaprun/host").each do |node|
         end
       end
       port_arr.push("#{name_arr.uniq[0]}")
-      port_dict["#{name_arr.uniq[0]},#{address}"] = port_arr
+      port_dict["#{name_arr.uniq[0]}-#{address}"] = port_arr
       prepare_data(port_dict, servicefp)
     end
 
