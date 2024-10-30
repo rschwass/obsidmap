@@ -7,7 +7,7 @@ $port="27124"
 #doc = File.open("test.xml") { |f| Nokogiri::XML(f) }
 
 #For windows nmap under wsl
-command = %Q|cmd.exe /c nmap -sV --open #{ARGV.join(' ')} -oX -|
+command = %Q|cmd.exe /c nmap -sV -p 80,443,22 --open #{ARGV.join(' ')} -oX -|
 
 #For Linux
 #command = %Q|nmap -sV -Pn -p- --open #{ARGV.join(' ')} -oX -|
