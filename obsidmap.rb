@@ -15,9 +15,9 @@ command = %Q|cmd.exe /c nmap -sV -p 22 --open #{ARGV.join(' ')} -oX -|
 
 doc = Nokogiri::XML(`#{command}`)
 
-def send_data(hostname, body)
+def send_data(ip, body)
 
-  uri = URI.parse("https://127.0.0.1:#{$port}/vault/scans/#{hostname}.md")
+  uri = URI.parse("https://127.0.0.1:#{$port}/vault/scans/#{ip}.md")
   request = Net::HTTP::Put.new(uri)
   request.content_type = "text/markdown"
   request["Accept"] = "*/*"
@@ -66,12 +66,13 @@ end
 
 arr=[]
 port_dict.each do |k,v|
-  $hostname = k
+  ip = k
   v.each do |j|
     port = j[0]
     proto = j[1]
     state = j[2]
     service = j[3]
+    $hostname = j[4]
     arr.push(%Q|- "#{port}:#{proto}:#{service}:"|)
   end
 
@@ -80,6 +81,7 @@ end
 body= %Q|---
   datetime: #{Time.now}
   hostname: #{$hostname}
+  ip: #{ip}
   open_ports:
     #{arr.join("\n    ")}
   tags:
@@ -109,7 +111,7 @@ doc.xpath("//nmaprun/host").each do |node|
     end
 
     if child.name == 'address'
-      puts child['addr']
+      address=child['addr']
     end
 
     if child.name == 'ports'
@@ -136,8 +138,8 @@ doc.xpath("//nmaprun/host").each do |node|
           port_arr.push(c_arr)
         end
       end
-      #puts name_arr.uniq
-      port_dict["#{name_arr.uniq[0]}"] = port_arr
+      port_arr.push("#{name_arr.uniq[0]}")
+      port_dict[address] = port_arr
       prepare_data(port_dict, servicefp)
     end
 
