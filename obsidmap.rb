@@ -70,6 +70,7 @@ port_dict.each do |k,v|
   $ip = k.split('-')[1]
   $hostname = k.split('-')[0]
   $filename = k
+  puts v
   v.each do |j|
     port = j[0]
     proto = j[1]
