@@ -66,6 +66,7 @@ end
 
 arr=[]
 port_dict.each do |k,v|
+  puts k
   $ip = k.split('-')[1]
   $hostname = k.split('-')[0]
   $filename = k
