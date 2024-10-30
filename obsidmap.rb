@@ -15,9 +15,9 @@ command = %Q|cmd.exe /c nmap -sV -p 80,443,22 --open #{ARGV.join(' ')} -oX -|
 
 doc = Nokogiri::XML(`#{command}`)
 
-def send_data(ip, body)
+def send_data(filename, body)
 
-  uri = URI.parse("https://127.0.0.1:#{$port}/vault/scans/#{ip}.md")
+  uri = URI.parse("https://127.0.0.1:#{$port}/vault/scans/#{filename}}.md")
   request = Net::HTTP::Put.new(uri)
   request.content_type = "text/markdown"
   request["Accept"] = "*/*"
@@ -68,6 +68,7 @@ arr=[]
 port_dict.each do |k,v|
   $ip = k.split('-')[1]
   $hostname = k.split('-')[0]
+  $filename = k
   v.each do |j|
     port = j[0]
     proto = j[1]
@@ -92,7 +93,7 @@ body= %Q|---
 
 |
 
-send_data($hostname, body)
+send_data($filename, body)
 end
 
 doc.xpath("//nmaprun/host").each do |node|
