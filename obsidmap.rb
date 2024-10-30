@@ -66,7 +66,7 @@ end
 
 arr=[]
 port_dict.each do |k,v|
-  ip = k
+  $ip = k
   v.each do |j|
     port = j[0]
     proto = j[1]
@@ -81,7 +81,7 @@ end
 body= %Q|---
   datetime: #{Time.now}
   hostname: #{$hostname}
-  ip: #{ip}
+  ip: #{$ip}
   open_ports:
     #{arr.join("\n    ")}
   tags:
