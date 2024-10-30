@@ -17,7 +17,7 @@ doc = Nokogiri::XML(`#{command}`)
 
 def send_data(filename, body)
 
-  uri = URI.parse("https://127.0.0.1:#{$port}/vault/scans/#{filename}}.md")
+  uri = URI.parse("https://127.0.0.1:#{$port}/vault/scans/#{filename}.md")
   request = Net::HTTP::Put.new(uri)
   request.content_type = "text/markdown"
   request["Accept"] = "*/*"
