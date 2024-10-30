@@ -3,7 +3,7 @@ require 'net/http'
 require 'uri'
 
 $apikey=""
-
+$port = ""
 #doc = File.open("test.xml") { |f| Nokogiri::XML(f) }
 
 #For windows nmap under wsl 
@@ -17,11 +17,11 @@ doc = Nokogiri::XML(`#{command}`)
 
 def send_data(hostname, body)
 
-  uri = URI.parse("http://127.0.0.1:27123/vault/scans/#{hostname}.md")
+  uri = URI.parse("http://127.0.0.1:#{$port}/vault/scans/#{hostname}.md")
   request = Net::HTTP::Put.new(uri)
   request.content_type = "text/markdown"
   request["Accept"] = "*/*"
-  request["Authorization"] = "Bearer #{apikey}"
+  request["Authorization"] = "Bearer #{$apikey}"
   request.body = %Q|#{body}|
 
 
