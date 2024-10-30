@@ -73,8 +73,6 @@ port_dict.each do |k,v|
     proto = j[1]
     state = j[2]
     service = j[3]
-    $hostname = j[4]
-    puts $hostname
     arr.push(%Q|- "#{port}:#{proto}:#{service}:"|)
   end
 
