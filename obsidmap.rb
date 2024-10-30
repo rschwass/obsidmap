@@ -77,8 +77,9 @@ port_dict.each do |k,v|
     state = j[2]
     service = j[3]
     arr.push(%Q|- "#{port}:#{proto}:#{service}"|)
-  end
 
+  end
+  puts arr
 end
 
 body= %Q|---
