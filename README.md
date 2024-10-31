@@ -38,7 +38,7 @@ command = %Q|nmap -sV -Pn -p- --open #{ARGV.join(' ')} -oX -|
 Here is the dataview code
 ```
 ```dataview
-table hostname, open_ports from #asset 
+table hostname, open_ports, ip from #asset 
 ```
 ```
 
