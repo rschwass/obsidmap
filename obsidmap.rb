@@ -34,8 +34,8 @@ def send_data(filename, body)
     http.request(request)
   end
 
-  # response.code
-  # response.body
+  puts response.code
+  puts response.body
 
 end
 
