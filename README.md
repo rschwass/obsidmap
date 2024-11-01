@@ -43,12 +43,13 @@ table hostname, open_ports, ip from #asset
 ```
 
 
-Runs on ruby and you must install:
+Runs on ruby and you must install: Nokogiri 
 
-Nokogiri 
 
 ```
+
 sudo gem isntall nokogiri
+
 ```
 
 ### Usage
