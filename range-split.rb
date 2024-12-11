@@ -9,6 +9,6 @@ end
 
 ips=convert_ip_range(ARGV[0], ARGV[1])
 
-ips.each_slice(ARGV[2]) do |list|
+ips.each_slice(ARGV[2].to_i) do |list|
   puts list.join(' ')
 end
